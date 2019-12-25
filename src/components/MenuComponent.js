@@ -5,36 +5,18 @@ import { Media } from 'reactstrap';
 class Menu extends Component {
 
     constructor(props) {
+
         super(props);
 
         this.state = {
-            dishes: [
-                {
-                    id: 0,
-                    name: 'testmenu A',
-                    image: 'assets/images/uthappizza.png',
-                    category: 'mains',
-                    label: 'hot',
-                    price: '4.99',
-                    description:'description A',
-                },
-                {
-                    id: 1,
-                    name: 'testmenu B',
-                    image: 'assets/images/zucchipakoda.png',
-                    category: 'appetizer',
-                    label: 'hot',
-                    price: '1.99',
-                    description:'description B',
-                },
 
-            ]
         }
 
     }
 
     render() {
-        const menu = this.state.dishes.map(  (dish) => {
+        
+        const menu = this.props.dishes.map((dish) => {
             return (
                 <div key={dish.id} className="col-12 mt-5">
                     <Media tag="li">
@@ -50,7 +32,6 @@ class Menu extends Component {
             );
         });
         return ( 
-
             <div className="container">
                 <div className="row">
                     <Media list>

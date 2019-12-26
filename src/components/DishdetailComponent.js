@@ -11,15 +11,40 @@ export class DishDetail extends Component {
         console.log('DishDetail component constructor is invoked.');
     }
 
-    renderComments() {
-        return(
-            <div>
+    renderComments(dish) {
 
-            </div>
-        )
+        const listComments = (
+            <ul class="list-unstyled">
+                {dish.comments.map((comment) =>
+                    <li key={comment.id}>
+                        {comment.comment} <br></br>
+                        -- {comment.author},   {comment.date} <br></br>
+
+                    </li>
+                    
+                )}
+            </ul>
+        );
+        
+        if (dish.comments!=null) {
+            return (
+                <div>
+                    <h4>Comments</h4> 
+                {listComments}
+                </div>
+            );        
+        }
+        else {
+            return(
+                <div></div>
+            )
+        }  
+
     }
 
     renderDish(dish) {
+
+        //const comments = dish.comments;
 
         if (dish!=null) {
             return(
@@ -32,6 +57,9 @@ export class DishDetail extends Component {
                                 <CardText>{dish.description}</CardText>
                             </CardBody>
                         </Card>
+                    </div>
+                    <div>
+                        {this.renderComments(dish)}
                     </div>
                 </div>
 

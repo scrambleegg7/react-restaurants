@@ -30,7 +30,7 @@ export class DishDetail extends Component {
             return (
                 <div>
                     <h4>Comments</h4> 
-                {listComments}
+                    {listComments}
                 </div>
             );        
         }
@@ -58,7 +58,8 @@ export class DishDetail extends Component {
                             </CardBody>
                         </Card>
                     </div>
-                    <div>
+                    <div className="col-12 col-md-5 m-1">
+
                         {this.renderComments(dish)}
                     </div>
                 </div>

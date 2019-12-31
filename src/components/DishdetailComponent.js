@@ -1,90 +1,77 @@
 
-import React, { Component } from 'react';
+import React from 'react';
 import { Card, CardImg, CardImgOverlay, CardText, CardBody, CardTitle} from 'reactstrap';
 
 
-export class DishDetail extends Component {
+
+
+    /*componentDidMount() {
+        console.log("DishDetail componentDidMount.");
+    }
     
-    constructor(props) {
-        super(props);
-        //this.state = {};
-        console.log('DishDetail component constructor is invoked.');
-        console.log(this.props.id)
-    }
+    componentDidUpdate() {
+        console.log("DishDetail componentDidUpdate.");
+    }*/
 
-    renderComments(dish) {
+function RenderComments({dish}) {
 
-        const listComments = (
-            <ul className="list-unstyled">
-                {dish.comments.map((comment) =>
-                    <li key={comment.id}>
-                        {comment.comment} <br></br>
-                        -- {comment.author},   {comment.date} <br></br>
+    const listComments = (
+        <ul className="list-unstyled">
+            {dish.comments.map((comment) =>
+                <li key={comment.id}>
+                    <p>{comment.comment} </p>
+                    <p>-- {comment.author},   {new Intl.DateTimeFormat('en-US', 
+                                    {year: 'numeric', month:'short', day:'2-digit' }).format( new Date(Date.parse(comment.date))   ) }   </p>
 
-                    </li>
-                    
-                )}
-            </ul>
-        );
-        
-        if (dish.comments!=null) {
-            return (
-                <div>
-                    <h4>Comments</h4> 
-                    {listComments}
-                </div>
-            );        
-        }
-        else {
-            return(
-                <div></div>
-            )
-        }  
-
-    }
-
-    renderDish(dish) {
-
-        //const comments = dish.comments;
-
-        if (dish!=null) {
-            return(
-                <div className="row">
-                    <div className="col-12 col-md-5 m-1">
-                        <Card>
-                            <CardImg width='100%' object src={dish.image.toString() } alt={dish.name} />
-                            <CardBody>
-                                <CardTitle>{dish.name}</CardTitle>
-                                <CardText>{dish.description}</CardText>
-                            </CardBody>
-                        </Card>
-                    </div>
-                    <div className="col-12 col-md-5 m-1">
-
-                        {this.renderComments(dish)}
-                    </div>
-                </div>
-
+                </li>
+                
             )}
-        else {
-            return(
-                <div></div>
-            )
-        }
+        </ul>
+    );
+    
+    return (
+        <div className="col-12 col-md-5 m-1">
+            <h4>Comments</h4> 
+            {listComments}
+        </div>
+    );        
 
-    }
-
-    render() {
-
-        const dish = this.props.dish;
-        //console.log(dish.id)
-        return(
-            <div>
-                {this.renderDish(dish)}
-            </div>
-        )
-    }
 }
 
+function RenderDish({dish}) {
+
+    //const comments = dish.comments;
+    return(
+        <div className="col-12 col-md-5 m-1">
+            <Card>
+                <CardImg width='100%'  src={dish.image } alt={dish.name} />
+                <CardBody>
+                    <CardTitle>{dish.name}</CardTitle>
+                    <CardText>{dish.description}</CardText>
+                </CardBody>
+            </Card>
+        </div>
+    )
+}
+
+const DishDetail = (props) => {
+
+    console.log("DishDetail render invoked.");
+    if ( props.dish != null) {
+
+        return(
+            <div className="container">
+                <div className="row">
+                    <RenderDish dish = {props.dish} />
+                    <RenderComments dish = {props.dish} />
+                </div>
+            </div>
+        )
+
+    }
+    else {
+        return(<div></div>)
+    }
+}
 
 export default DishDetail;

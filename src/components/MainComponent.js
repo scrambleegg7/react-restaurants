@@ -33,7 +33,7 @@ class Main extends Component {
           return dish.id === this.state.selectedDish;
         })[0]} />
       
-        {  console.log(this.state.selectedDish)  }
+       
       
       </div>
     );

@@ -9,12 +9,13 @@ export class DishDetail extends Component {
         super(props);
         //this.state = {};
         console.log('DishDetail component constructor is invoked.');
+        console.log(this.props.id)
     }
 
     renderComments(dish) {
 
         const listComments = (
-            <ul class="list-unstyled">
+            <ul className="list-unstyled">
                 {dish.comments.map((comment) =>
                     <li key={comment.id}>
                         {comment.comment} <br></br>
@@ -51,7 +52,7 @@ export class DishDetail extends Component {
                 <div className="row">
                     <div className="col-12 col-md-5 m-1">
                         <Card>
-                            <CardImg width='100%' object src={dish.image} alt={dish.name} />
+                            <CardImg width='100%' object src={dish.image.toString() } alt={dish.name} />
                             <CardBody>
                                 <CardTitle>{dish.name}</CardTitle>
                                 <CardText>{dish.description}</CardText>
@@ -75,7 +76,8 @@ export class DishDetail extends Component {
 
     render() {
 
-        const dish = this.props.selectedDish;
+        const dish = this.props.dish;
+        //console.log(dish.id)
         return(
             <div>
                 {this.renderDish(dish)}

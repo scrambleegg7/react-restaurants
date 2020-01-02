@@ -19,8 +19,8 @@ class DishDetail extends Component {
     }
 
 
-    renderComments(comments) {
-        const listItems = comments.map((comment) => {
+    renderComments(comment) {
+        const listItems = comment.map((comment) => {
             var date = new Date(comment.date);
             return (
                 <div>
@@ -36,7 +36,7 @@ class DishDetail extends Component {
             );
         });
 
-        if (comments != null){
+        if (comment != null){
             return (
                 <div>
                     <h4>Comments</h4>
@@ -56,13 +56,19 @@ class DishDetail extends Component {
     }
 
     render() {
+
+        const dd = this.props.dish;
+        console.log("DishDetail render -----> ."  )
         return (
-            <div className="row">
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderDish(this.props.dish)}
-                </div>
-                <div className="col-12 col-md-5 m-1">
-                    {this.renderComments(this.props.dish.comments)}
+            <div className="container">
+                {dd}
+                <div className="row">
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderDish(this.props.dish)}
+                    </div>
+                    <div className="col-12 col-md-5 m-1">
+                        {this.renderComments(this.props.dish.comments)}
+                    </div>
                 </div>
             </div>
         );

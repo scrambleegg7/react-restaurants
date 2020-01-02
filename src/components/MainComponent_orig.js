@@ -18,6 +18,8 @@ class Main extends Component {
     super(props);
     this.state = {
         dishes: DISHES,
+        selectedDish: null
+        
     };
   }
 
@@ -27,20 +29,13 @@ class Main extends Component {
   }
 
   render() {
-
-    const HomePage = () => {
-      return(
-          <Home />
-      )
-    }
     return (
       <div>
         <Header />
-        <Switch>
-          <Route path="/home" component={HomePage} />
-          <Route exact path="/menu" component = {() =>  <Menu dishes={this.state.dishes}  />      }  />
-          <Redirect to="/home"/>
-        </Switch>
+        <Menu dishes={this.state.dishes} onClick={(dishId) => this.onDishSelect(dishId)} />
+        <DishDetail dish={this.state.dishes.filter((dish) => {
+          return dish.id === this.state.selectedDish;
+        })[0]} />
         <Footer />
        
       

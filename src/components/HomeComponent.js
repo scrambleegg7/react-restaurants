@@ -3,14 +3,15 @@ import  { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'rea
 
 function RenderCard({item}) {
 
-    const img = (<div> {item.image}  </div>);
+    const img = item.image;
+    const name = item.name;
     return(
 
         <Card>
-            <CardImg src={item.image}  alt={item.name} />
+            <CardImg src={img}  alt={name} />
             <CardBody>
                 <CardTitle>
-                    {item.name}
+                    {name}
                 </CardTitle>
                 { item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null }  
                 <CardText>{item.description}</CardText>

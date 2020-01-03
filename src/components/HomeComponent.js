@@ -25,6 +25,10 @@ function RenderCard({item}) {
 
 function Home(props) {
 
+    // rendering 3 Cards 
+    // 1. dish explaining
+    // 2. promotion
+    // 3. leader 
     return(
         <div className="container">
 

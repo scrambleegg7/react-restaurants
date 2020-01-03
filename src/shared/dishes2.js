@@ -3,7 +3,7 @@ export const DISHES =
         {
         id: 0,
         name:'Uthappizza',
-        image: 'assets/images/tab1.jpg',
+        image: '/assets/images/tab1.jpg',
         category: 'mains',
         label:'Hot',
         price:'4.99',
@@ -13,7 +13,7 @@ export const DISHES =
         {
         id: 1,
         name:'Zucchipakoda',
-        image: '/assets/images/tab2.png',
+        image: '/assets/images/tab2.jpg',
         category: 'appetizer',
         label:'',
         price:'1.99',
@@ -23,7 +23,7 @@ export const DISHES =
         {
         id: 2,
         name:'Vadonut',
-        image: '/assets/images/sheet1.png',
+        image: '/assets/images/sheet1.jpg',
         category: 'appetizer',
         label:'New',
         price:'1.99',
@@ -33,7 +33,7 @@ export const DISHES =
         {
         id: 3,
         name:'ElaiCheese Cake',
-        image: '/assets/images/sheet2.png',
+        image: '/assets/images/sheet2.jpg',
         category: 'dessert',
         label:'',
         price:'2.99',

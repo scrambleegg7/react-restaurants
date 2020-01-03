@@ -20,15 +20,7 @@ function RenderMenuItem( { dish, onClick} ) {
 
 const Menu = (props) => {
 
-    console.log("Menu component render invoked.", props.dishes[1].name)
-
-    const itemname = props.dishes.map( (dish) => {
-        return(
-            <div>
-                <p>TEST dish item name</p>
-            </div>
-        )
-    });
+    //console.log("Menu component render invoked.", props.dishes[1].name)
 
     const menu = props.dishes.map((dish) => {
         return (

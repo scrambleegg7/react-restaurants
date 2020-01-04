@@ -20,7 +20,7 @@ const mapStoreToProps = state => {
 
   return{
     dishes: state.dishes,
-    comment: state.comment,
+    comments: state.comments,
     promotions: state.promotions,
     leaders: state.leaders
   }

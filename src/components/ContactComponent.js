@@ -26,6 +26,7 @@ class Contact extends Component {
             
         this.handleSubmit = this.handleSubmit.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleBlur = this.handleBlur.bind(this);
 
     }
 
@@ -52,7 +53,7 @@ class Contact extends Component {
     }
 
     validate(firstname, lastname, telnum, email) {
-        const erros = {
+        const errors = {
             firstname : '',
             lastname : '',
             telnum : '', 
@@ -60,29 +61,29 @@ class Contact extends Component {
         }
 
         if (this.state.toruched.firstname && firstname.length < 3)
-            erros.firstname = "FirstName should be >= 3 characters."
+            errors.firstname = "FirstName should be >= 3 characters."
         else if (this.state.toruched.firstname && firstname.length > 10)
-            erros.firstname = "FirstName should be 10= 10 characters."
+            errors.firstname = "FirstName should be <= 10 characters."
 
         if (this.state.toruched.lastname && lastname.length < 3)
-            erros.firstname = "FirstName should be >= 3 characters."
+            errors.lastname = "LastName should be >= 3 characters."
         else if (this.state.toruched.lastname && lastname.length > 10)
-            erros.firstname = "FirstName should be 10= 10 characters."
+            errors.lastname = "LastName should be <= 10 characters."
 
-        const reg = /~\d+$/;
+        const reg = /^\d+$/;
         if (this.state.toruched.telnum && !reg.test(telnum))
-            erros.telnum = "Tel Num should containe only numbers. "
+            errors.telnum = "Tel Num should containe only numbers. "
 
         if (this.state.toruched.telnum && email.split('').filter(x=> x === '@').length != 1 )
-            erros.email = "Email should containe @. "
+            errors.email = "Email should containe @. "
 
-        return erros;
+        return errors;
 
     }
 
     render() {    
 
-        const erros = this.validate(this.state.firstname, this.state.lastname, 
+        const errors = this.validate(this.state.firstname, this.state.lastname, 
                                      this.state.telnum, this.state.email)
         return(
             <div className="container">
@@ -134,11 +135,13 @@ class Contact extends Component {
                                 <FormGroup row>
                                     <Label htmlFor="firstname" md={2}>First Name</Label>
                                     <Col md={10}>
-                                        <Input type="text" id="firstname" name="firstname" placeholder="First Name" value={this.state.firstname} 
+                                        <Input type="text" id="firstname" name="firstname" placeholder="First Name" value={this.state.firstname}
+                                        valid={errors.firstname === ''}
+                                        invalid={errors.firstname !== ''} 
                                         onBlur={this.handleBlur('firstname')}
                                         onChange={this.handleInputChange}  />
                                         <FormFeedback>
-                                            {erros.firstname}
+                                            {errors.firstname}
                                         </FormFeedback>
                                     </Col>
                                 </FormGroup>
@@ -146,10 +149,12 @@ class Contact extends Component {
                                     <Label htmlFor="lastname" md={2}>Last Name</Label>
                                     <Col md={10}>
                                         <Input type="text" id="lastname" name="lastname" placeholder="Last Name" value={this.state.lastname} 
+                                        valid={errors.lastname === ''}
+                                        invalid={errors.lastname !== ''} 
                                         onBlur={this.handleBlur('lastname')}
                                         onChange={this.handleInputChange}  />
                                         <FormFeedback>
-                                            {erros.lastname}
+                                            {errors.lastname}
                                         </FormFeedback>
 
                                     </Col>
@@ -158,10 +163,12 @@ class Contact extends Component {
                                     <Label htmlFor="telnum" md={2}>Contact Tel.</Label>
                                     <Col md={10}>
                                         <Input type="tel" id="telnum" name="telnum" placeholder="Tel Num" value={this.state.telnum}  
+                                        valid={errors.telnum === ''}
+                                        invalid={errors.telnum !== ''} 
                                         onBlur={this.handleBlur('telnum')}  
                                         onChange={this.handleInputChange} />
                                         <FormFeedback>
-                                            {erros.telnum}
+                                            {errors.telnum}
                                         </FormFeedback>
                                     </Col>
                                 </FormGroup>
@@ -169,10 +176,12 @@ class Contact extends Component {
                                     <Label htmlFor="email" md={2}>Email</Label>
                                     <Col md={10}>
                                         <Input type="email" id="email" name="email" placeholder="Email" value={this.state.email} 
+                                        valid={errors.email === ''}
+                                        invalid={errors.email !== ''} 
                                         onBlur={this.handleBlur('email')}
                                         onChange={this.handleInputChange} />
                                         <FormFeedback>
-                                            {erros.email}
+                                            {errors.email}
                                         </FormFeedback>
                                     </Col>
                                 </FormGroup>

@@ -15,7 +15,7 @@ class Header extends Component {
                 
         this.state = {
             isNavOpen: false,
-            osModalOpen: false,
+            isModalOpen: false,
         };
     }
     

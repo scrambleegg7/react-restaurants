@@ -79,12 +79,12 @@ export class CommentForm extends Component {
                                         </Control.select>
                                 </Row>
                                 <Row className="form-group">
-                                    <Label htmlFor="yourname">Your Name</Label>
+                                    <Label htmlFor="author">Your Name</Label>
                                     
-                                        <Control.text model=".yourname" id="yourname" name="yourname" placeholder="Yourname" 
+                                        <Control.text model=".author" id="author" name="author" placeholder="Yourname" 
                                         className="form-control"                                         
                                         validators={{ required, minLength:minLength(3), maxLength:maxLength(15) }}/>
-                                        <Errors className="text-danger" model=".yourname" show="touched" messages={{
+                                        <Errors className="text-danger" model=".author" show="touched" messages={{
                                             required: 'Required',
                                             minLength: 'Mus be >= 2 chars.', 
                                             maxLength: 'Mus be <= 15 chars.'

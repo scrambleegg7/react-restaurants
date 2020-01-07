@@ -16,6 +16,8 @@ import About from './AboutComponent';
 import { Switch, Route, Redirect, withRouter   } from 'react-router-dom';
 import { connect } from 'react-redux'
 
+import { addComment } from '../redux/ActionCreators';
+
 const mapStoreToProps = state => {
 
   return{
@@ -27,6 +29,9 @@ const mapStoreToProps = state => {
   
 }
 
+const mapDispatchToProps = (dispatch) => ({
+    addComment: (dishId, rating, author, comment) => dispatch(addComment(dishId, rating, author, comment) ) 
+})
 
 class Main extends Component {
 
@@ -40,9 +45,9 @@ class Main extends Component {
     // set filter to extract just only true flag from JSON data.
     const HomePage = () => {
       
-    const dish_selected =  this.props.dishes.filter((dish) => dish.featured)[0];
-    const promo_selected =  this.props.promotions.filter((promo) => promo.featured)[0];
-    const leader_selected =  this.props.leaders.filter((leader) => leader.featured)[0];
+      const dish_selected =  this.props.dishes.filter((dish) => dish.featured)[0];
+      const promo_selected =  this.props.promotions.filter((promo) => promo.featured)[0];
+      const leader_selected =  this.props.leaders.filter((leader) => leader.featured)[0];
 
       return(
         <div>
@@ -59,7 +64,8 @@ class Main extends Component {
     const DishWithId = ({match}) => {
       return(
           <DishDetail dish={this.props.dishes.filter((dish) => dish.id === parseInt(match.params.dishId,10))[0]} 
-            comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} />
+            comments={this.props.comments.filter((comment) => comment.dishId === parseInt(match.params.dishId,10))} 
+            addComment={this.props.addComment} />
       );
     };    
 
@@ -84,4 +90,4 @@ class Main extends Component {
   }
 }
 
-export default withRouter( connect(mapStoreToProps)(Main) );
+export default withRouter( connect(mapStoreToProps, mapDispatchToProps)(Main) );

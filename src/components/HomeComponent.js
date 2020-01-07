@@ -29,6 +29,7 @@ function Home(props) {
     // 1. dish explaining
     // 2. promotion
     // 3. leader 
+    console.log("home components. " + (props.dish) )
     return(
         <div className="container">
 

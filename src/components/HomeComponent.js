@@ -1,24 +1,42 @@
 import React from 'react';
 import  { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'reactstrap';
 
-function RenderCard({item}) {
+import {Loading} from './LoadingComponent';
 
-    const img = item.image;
-    const name = item.name;
-    return(
 
-        <Card>
-            <CardImg src={img}  alt={name} />
-            <CardBody>
-                <CardTitle>
-                    {name}
-                </CardTitle>
-                { item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null }  
-                <CardText>{item.description}</CardText>
-            </CardBody>
-        </Card>
-        
-    );
+function RenderCard({item, isLoading, errMess}) {
+
+    if (isLoading) {
+        return(
+
+                <Loading />
+        )
+
+    }
+    else if (errMess) {
+        return(
+            <h4>{errMess}</h4>
+        )
+    }
+    else {
+
+            const img = item.image;
+            const name = item.name;
+            return(
+
+                <Card>
+                    <CardImg src={img}  alt={name} />
+                    <CardBody>
+                        <CardTitle>
+                            {name}
+                        </CardTitle>
+                        { item.designation ? <CardSubtitle>{item.designation}</CardSubtitle> : null }  
+                        <CardText>{item.description}</CardText>
+                    </CardBody>
+                </Card>
+                
+            );
+        }
 
 }
 
@@ -36,7 +54,7 @@ function Home(props) {
 
             <div className="row align-items-start">
                 <div className="col-12 col-md m-1">
-                    <RenderCard item={props.dish} />
+                    <RenderCard item={props.dish} isLoading={props.dishesLoading} errMess = {props.dishesErrMess}/>
                 </div>
                 <div className="col-12 col-md m-1">
                     <RenderCard item={props.promotion} />

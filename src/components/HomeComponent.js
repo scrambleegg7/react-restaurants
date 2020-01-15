@@ -3,7 +3,7 @@ import  { Card, CardImg, CardText, CardBody, CardTitle, CardSubtitle } from 'rea
 
 import {Loading} from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
-
+import { FadeTransform } from 'react-animation-components';
 
 function RenderCard({item, isLoading, errMess}) {
 
@@ -25,6 +25,10 @@ function RenderCard({item, isLoading, errMess}) {
             const name = item.name;
             return(
 
+                <FadeTransform in   
+                   transformProps={{
+                       exitTransform: 'scale(0.5) translateY(-50%)'
+                   }}>
                 <Card>
                     <CardImg src={ baseUrl + img}  alt={name} />
                     <CardBody>
@@ -35,7 +39,7 @@ function RenderCard({item, isLoading, errMess}) {
                         <CardText>{item.description}</CardText>
                     </CardBody>
                 </Card>
-                
+                </FadeTransform>
             );
         }
 

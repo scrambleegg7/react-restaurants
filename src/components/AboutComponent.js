@@ -6,13 +6,15 @@ import {Loading} from './LoadingComponent';
 import { baseUrl } from '../shared/baseUrl';
 
 
+import { FadeTransform, Fade, Stagger} from 'react-animation-components';
+
 function RenderLeader( {leader} ) {
 
     const image = (leader.image)
     //console.log("RenderLeader" + image)
 
     return(
-
+        <Fade in>
         <Media>
             <Media left>
                 <Media object src={ baseUrl + leader.image} alt={leader.name} />
@@ -23,7 +25,7 @@ function RenderLeader( {leader} ) {
                 <p>{leader.description}</p>
             </Media>
         </Media>
-
+        </Fade>
         );
 
 
@@ -120,10 +122,11 @@ function About(props) {
                     </div>
 
                         <div className="col-12">
-                        
+                        <Stagger in>
+
                                 {leaders}
             
-                        
+                        </Stagger>
                     </div>
                 </div>
             </div>
